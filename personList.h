@@ -1,6 +1,6 @@
 #ifndef __PERSONLIST_H__
 #define __PERSONLIST_H__
-#include "person.h"
+#include "person.cpp"
 
 class PersonList{
     private:
