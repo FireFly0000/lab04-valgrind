@@ -1,6 +1,5 @@
 // Adapted from http://people.cs.ksu.edu/~sherrill/labs/lab05/lineage.cpp
-#include "person.h"
-#include "personList.h"
+#include "personList.cpp"
 
 int main() {
     PersonList theList;

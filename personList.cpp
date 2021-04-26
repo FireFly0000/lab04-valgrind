@@ -12,8 +12,18 @@ PersonList::PersonList(){
 }
 
 PersonList::~PersonList(){
-    delete [] theList;
+    for (int i =0; i<=capacity-1; i++){
+	delete theList[i];
+	theList[i] = NULL;
+    }
+    delete[] theList;
 }
+Person::~Person(){
+   delete[] children;
+   delete[] name;
+}
+
+
 
 void PersonList::addPerson(const char* child_name, const char* father_name, const char* mother_name){
     Person *father = 0;
@@ -49,7 +59,7 @@ void PersonList::addPerson(const char* child_name, const char* father_name, cons
 
 void PersonList::insertIntoList(Person *newPerson){
     if(numPeople == capacity) expand(&theList, &capacity);
-
+    
     theList[numPeople++] = newPerson;
 }
 
