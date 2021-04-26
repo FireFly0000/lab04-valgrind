@@ -15,15 +15,21 @@ Person::Person(const char *name_, Person* father_, Person* mother_){
     children = new Person*[capacity];
 }
 
-Person::~Person(){
-    delete[] children;
-    delete[] name;
-    delete father;
-    delete mother;
-}
+/*Person::~Person(){
+   for (int i=0; i<=capacity*2; i++){
+	delete children[i];
+	children[i] = NULL;
+    }	
+   delete[] children;
+   delete[] name;
+   delete mother;
+   delete father;
+   
+}*/
 
 void Person::addChild(Person *newChild){
     if(numChildren == capacity) expand(&children, &capacity);
+    
     children[numChildren++] = newChild;
 }
 
@@ -77,9 +83,19 @@ char* Person::compute_relation(int level){
 /* non-member function which doubles the size of t
  * NOTE: t's type will be a pointer to an array of pointers
  */
-void expand(Person ***t, int *MAX){
-  Person **temp = new Person*[2 * *MAX];
+void expand(Person* **t, int *MAX){
+  Person **temp = 0;
+  temp = new Person*[2 * *MAX];
+  for (int i =0; i<= 2* *MAX-1;i++){
+	temp[i] = NULL;
+  }
   memcpy(temp, *t, *MAX * sizeof(**t));
+  /*for (int i =0; i<= *MAX; i++){
+        delete *t[i];
+	*t[i] = NULL;
+  }*/
+  delete[] *t;
+  *t = NULL;
   *MAX *= 2;
   *t = temp;
 }
