@@ -14,6 +14,10 @@ Person::Person(const char *name_, Person* father_, Person* mother_){
     numChildren = 0;
     children = new Person*[capacity];
 }
+Person::~Person(){
+    delete[] name;
+    delete[] children;
+}
 
 void Person::addChild(Person *newChild){
     if(numChildren == capacity) expand(&children, &capacity);
@@ -76,12 +80,11 @@ char* Person::compute_relation(int level){
 void expand(Person* **t, int *MAX){
   Person **temp = 0;
   temp = new Person*[2 * *MAX];
-  for (int i =0; i<= 2* *MAX-1;i++){
+ for (int i =0; i<= 2* *MAX-1;i++){
 	temp[i] = NULL;
   }
   memcpy(temp, *t, *MAX * sizeof(**t));
   delete[] *t;
-  *t = NULL;
   *MAX *= 2;
   *t = temp;
 }

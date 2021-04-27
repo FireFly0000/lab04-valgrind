@@ -18,10 +18,7 @@ PersonList::~PersonList(){
     }
     delete[] theList;
 }
-Person::~Person(){
-   delete[] children;
-   delete[] name;
-}
+
 
 
 
